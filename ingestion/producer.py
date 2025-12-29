@@ -17,6 +17,15 @@ producer = KafkaProducer(
     retries = 3
 )
 
+def shutdown(sig, frame):
+    print("Flushing producer...")
+    producer.flush()
+    producer.close()
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, shutdown)
+signal.signal(signal.SIGTERM, shutdown)
+
 def handle_trade(event):
     symbol = event["data"]["s"]
     event["data"]["ingestion_time"] = int(time.time() * 1000) # i was sending the ingestion_time directly, spark was expecting it to be data -> ingestion_time, so i had to change so ingestion time was inside data.
