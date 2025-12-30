@@ -16,6 +16,7 @@ echo "Creating topics..."
 /opt/kafka/bin/kafka-topics.sh \
   --bootstrap-server kafka:9092 \
   --create \
+  --if-not-exists \
   --topic binance_trades \
   --partitions 6 \
   --replication-factor 1

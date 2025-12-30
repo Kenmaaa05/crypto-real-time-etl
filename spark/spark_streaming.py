@@ -16,7 +16,7 @@ spark = (
     .getOrCreate()
 )
 
-spark.sparkContext.setLogLevel("WARN") # added the warn level to spot the warnings, errors, etc.
+spark.sparkContext.setLogLevel("WARN") # added the warn level to spot the warnings, errors, etc in the spark logs.
 
 # Java database connection
 JDBC_URL = "jdbc:postgresql://postgres:5432/crypto"

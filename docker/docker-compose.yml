@@ -2,6 +2,8 @@ services:
   kafka:
     image: apache/kafka:3.7.0
     container_name: kafka
+    volumes:
+      - kafka_data:/var/lib/kafka/data
     ports:
       - "9094:9094"
     environment:
@@ -50,6 +52,7 @@ services:
       POSTGRES_DB: crypto
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - ../postgres:/docker-entrypoint-initdb.d
 
   spark:
     image: apache/spark:3.5.0
@@ -71,3 +74,4 @@ services:
       - "4040:4040"
 volumes:
   pgdata:
+  kafka_data:
